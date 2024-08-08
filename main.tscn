@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://cj1f2uiwhgxpo"]
+[gd_scene load_steps=3 format=3 uid="uid://cj1f2uiwhgxpo"]
+
+[sub_resource type="Environment" id="Environment_vud21"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_csa3n"]
+lightmap_size_hint = Vector2i(17, 9)
 
 [node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vud21")
+
+[node name="Sphere" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 0.139732, 0)
+mesh = SubResource("SphereMesh_csa3n")
+skeleton = NodePath("")
+
+[node name="Camera3D" type="Camera3D" parent="Sphere"]
+transform = Transform3D(1.46146, -0.564625, 1.24312, 0, 1.30069, 0.590775, -0.682669, -0.302187, 0.665317, 2.11058, 0.822823, 1.20208)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999815, 0.0100388, -0.0164249, 7.72145e-09, 0.853251, 0.521501, 0.0192498, -0.521405, 0.853092, 0, 1.33137, 0)

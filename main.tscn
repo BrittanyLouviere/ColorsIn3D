@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cj1f2uiwhgxpo"]
+[gd_scene load_steps=5 format=3 uid="uid://cj1f2uiwhgxpo"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_6o1bq"]
 
 [sub_resource type="Environment" id="Environment_vud21"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ae53p"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_csa3n"]
 lightmap_size_hint = Vector2i(17, 9)
+material = SubResource("StandardMaterial3D_ae53p")
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_6o1bq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vud21")
@@ -20,3 +26,34 @@ transform = Transform3D(1.46146, -0.564625, 1.24312, 0, 1.30069, 0.590775, -0.68
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999815, 0.0100388, -0.0164249, 7.72145e-09, 0.853251, 0.521501, 0.0192498, -0.521405, 0.853092, 0, 1.33137, 0)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ColorPicker" type="ColorPicker" parent="UI/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[connection signal="color_changed" from="UI/MarginContainer/MarginContainer/ColorPicker" to="." method="_on_color_picker_color_changed"]
